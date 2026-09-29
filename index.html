@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Rager Network</title>
+  <link rel="stylesheet" href="style.css">
+  <link rel="icon" href="assets/favicon.png" type="image/x-icon">
+  <link rel="shortcut icon" href="assets/favicon.png" type="image/x-icon">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="assets/logo.png" alt="Rager Logo" class="logo-img">
+      <span class="rager">Rager</span> <span class="network">Network</span>
+    </div>
+    <div class="server-ip">
+      <button id="copy-ip-btn">Click to copy IP address</button>
+      <div id="copy-popup" class="popup">IP copied!</div>
+    </div>
+  </div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="index.html" class="active">Home</a></li>
+      <li class="dropdown">
+        <a href="pages/games.html">Games</a>
+        <ul class="dropdown-menu">
+          <li><a href="pages/skypvp.html">SkyPvP</a></li>
+          <li><a href="pages/kitpvp.html">KitPvP</a></li>
+          <li><a href="pages/prison.html">Prison</a></li>
+        </ul>
+      </li>
+      <li><a href="pages/shop.html">Shop</a></li>
+      <li><a href="pages/about.html">About</a></li>
+      <li><a href="pages/rules.html">Rules</a></li>
+      <li><a href="pages/wiki.html">Wiki</a></li>
+    </ul>
+
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank">
+        <img src="assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank">
+        <img src="assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank">
+        <img src="assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank">
+        <img src="assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div id="particles-js"></div>
+
+<aside class="sidebar fade-in">
+  <div class="sidebar-box">
+    <h3>Online Players</h3>
+    <p><span class="value">0</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Best Players (Last Month)</h3>
+    <p>K/D: <span class="value">none</span></p>
+    <p>Elo: <span class="value">none</span></p>
+    <p>Tournaments: <span class="value">none</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Next Event</h3>
+    <p><span class="value">No new events scheduled</span></p>
+  </div>
+</aside>
+
+<section class="hero fade-in">
+  <h1>Welcome to Rager Network</h1>
+  <p>Forge your legend in our unique SkyPvP RPG world!</p>
+  <p>Compete in KOTH battles, fight for airdrops, join tournaments, and explore a world full of secrets and adventures.</p>
+  <p>There's always something new waiting for you!</p>
+  <p>Check it out <a href="pages/games.html#skypvp" class="hero-link">here!</a></p>
+</section>
+
+<div class="news-menu fade-in">
+  <div class="news-item active">
+    <h3>Best RPG SkyPvP Experience!</h3>
+    <p>oh, you like RPG? Get ready for an extraordinary adventure on our SkyPvP server! Explore the skies, level up your skills, 
+      and immerse yourself in an epic world. Dive into a world steeped in rich and captivating lore, where every corner holds tales 
+      of ancient civilizations, mythical creatures, and artifacts waiting to be uncovered on our extraordinary server.</p>
+  </div>
+  <div class="news-item">
+    <h3>New PvP Modes Coming Soon</h3>
+    <p>Soon, we'll be introducing exciting new game modes like KitPvP, and other pvp related minigames.
+      Stay tuned for more competitive gamemodes!</p>
+  </div>
+  <div class="news-item">
+    <h3>Earn Rewards While Playing</h3>
+    <p>We will reward the top players with cash prizes or in-game items equivalent to those rewards.</p>
+  </div>
+
+  <div class="news-controls">
+    <button class="prev">←</button>
+    <button class="next">→</button>
+  </div>
+</div>
+
+<section class="hero fade-in">
+  <h2>Interested in our SkyPvP lore?</h2>
+  <p>Check out the video below for a detailed overview of the lore.</p>
+  
+  <div class="video-container">
+    <iframe width="560" height="315" 
+      src="https://www.youtube.com/embed/t-nHMofeToE" 
+      title="Rager Network SkyPvP Lore Trailer" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
+
+<section class="support fade-in">
+  <h2>Support Us. Get Rewards.</h2>
+  <p>Every purchase helps us build a bigger world, bring new adventures, and create new experiences for our community.</p>
+  <a href="pages/shop.html" class="support-btn">Visit Shop</a>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <p>© 2020-2026 Rager Network. All rights reserved.</p>
+    
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank">
+        <img src="assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank">
+        <img src="assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank">
+        <img src="assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank">
+        <img src="assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+
+    <a href="mailto:info@ragernetwork.com" class="contact-btn">Contact Us</a>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
