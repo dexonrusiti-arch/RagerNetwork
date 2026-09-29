@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SkyPvP - Rager Network</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" href="../../assets/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="../../assets/favicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="../../assets/logo.png" alt="Rager Logo" class="logo-img">
+      <span class="rager">Rager</span> <span class="network">Network</span>
+    </div>
+    <div class="server-ip">
+      <button id="copy-ip-btn">Click to copy IP address</button>
+      <div id="copy-popup" class="popup">IP copied!</div>
+    </div>
+  </div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="../games.html" class="active">Games</a>
+        <ul class="dropdown-menu">
+          <li><a href="skypvp.html" class="active">SkyPvP</a></li>
+          <li><a href="kitpvp.html">KitPvP</a></li>
+          <li><a href="prison.html">Prison</a></li>
+        </ul>
+      </li>
+      <li><a href="../shop.html">Shop</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../rules.html">Rules</a></li>
+      <li><a href="../wiki.html">Wiki</a></li>
+    </ul>
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank">
+        <img src="../../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank">
+        <img src="../../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank">
+        <img src="../../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank">
+        <img src="../../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div id="particles-js"></div>
+
+<aside class="sidebar fade-in">
+  <div class="sidebar-box">
+    <h3>Online Players</h3>
+    <p><span class="value">0</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Best Players (Last Month)</h3>
+    <p>K/D: <span class="value">none</span></p>
+    <p>Elo: <span class="value">none</span></p>
+    <p>Tournaments: <span class="value">none</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Next Event</h3>
+    <p><span class="value">No new events scheduled</span></p>
+  </div>
+</aside>
+
+<section class="hero fade-in" id="overview">
+  <h1>Overview</h1>
+  <p>
+    SkyPvP is a Minecraft game mode where players explore floating islands, gather resources, fight enemies, and battle other players in a world built around survival and progression.
+  </p>
+  <p>
+    At Rager Network, we've expanded this classic concept with RPG elements, combining PvP, PvE, exploration, quests, and equipment progression into a single experience where players can forge their own path, whether through combat, adventure, or simply exploring the world.
+  </p>
+  <img src="../../assets/scenery1.avif" alt="SkyPvP Scenery" class="scenery-img">
+  </section>
+
+<section class="hero fade-in" id="explore">
+  <h1>Explore the World</h1>
+  <p>
+    Discover a vast world filled with unique locations, dungeons, hidden secrets, challenging areas, and valuable resources waiting to be found.
+  </p>
+  <p>
+    From peaceful exploration to dangerous territories, every corner offers new opportunities for adventure and progression.
+  </p>
+</section>
+
+<section class="hero fade-in" id="pvp-pve">
+  <h1>PvP & PvE</h1>
+  <p>
+    Take on the world through PvP and PvE, with PvP available throughout the global map, allowing you to encounter and battle other players as you explore.
+  </p>
+  <p>
+    PvE can be found both across the global map and within dedicated dungeons, where you can challenge powerful enemies and take on increasingly dangerous encounters as you progress.
+  </p>
+</section>
+
+<section class="hero fade-in" id="events">
+  <h1>Events</h1>
+  <p>
+    Rager Network's world is constantly brought to life through a variety of PvP and PvE events, ranging from contested territories and airdrops to powerful bosses, invading armies, and mysterious encounters.
+  </p>
+  <p>
+    Take part in server-wide events such as King of the Hill, Airdrops, Golden Piggy, Aegis's Blessing, Grim Awakening, Necrotic Uprising, and Skirmish to earn valuable rewards and prove yourself against other players and the world's most dangerous threats.
+  </p>
+  <p>
+    For those looking for direct competition, staff-hosted 1v1, 2v2, and 3v3 tournaments offer a more competitive experience, with rewards ranging from valuable in-game items to cash prizes during our Grand Tournaments.
+  </p>
+
+  <!-- Dropdowns for each event -->
+<details class="rules-dropdown">
+  <summary>King of the Hill</summary>
+  <p>Fight other players to capture a designated territory on the map and claim valuable rewards for holding the hill.</p>
+
+  <!-- Slika Duststorm sa opisom -->
+  <img src="../../assets/duststorm.avif" alt="Duststorm Event" class="event-img">
+  <p class="event-caption">KOTH "Duststorm"</p>
+
+  <!-- Slika KOTH pomerena udesno -->
+  <img src="../../assets/koth.avif" alt="King of the Hill Arena" class="event-img-right">
+</details>
+
+
+
+<details class="rules-dropdown">
+  <summary>Airdrops</summary>
+  <p>An airdrop falls onto a random location on the map, giving the fastest player to reach it the chance to claim its valuable rewards.</p>
+  
+  <img src="../../assets/aidrop.avif" alt="Airdrop Event" class="event-img">
+  <p> Airdrop example, Armory airdrop.</p>
+
+  <video autoplay loop muted playsinline class="event-video">
+    <source src="../../assets/airdropfall.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+  </video>
+</details>
+
+
+
+  <details class="rules-dropdown">
+    <summary>Golden Piggy</summary>
+    <p>A Golden Piggy and its guards randomly appear across the map, rewarding the players who manage to defeat the Piggy with valuable loot.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>Aegis's Blessing</summary>
+    <p>Aegis wanders through the Rager Realm, spreading his blessing and summoning souls that players can collect in exchange for rewards.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>Worldbreaker</summary>
+    <p>A powerful boss emerges on the global map with an enormous amount of health, requiring players to work together to defeat it and earn server-wide rewards and buffs.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>Grim Awakening</summary>
+    <p>The Grim Reaper summons an army of undead to his island, with each defeated soldier having a chance to drop valuable rewards.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>Necrotic Uprising</summary>
+    <p>A corrupted undead army invades designated locations across the map, bringing tougher enemies and significantly greater rewards for those brave enough to face them.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>Skirmish</summary>
+    <p>Blaze and Ender forces clash across their respective islands, with players able to infiltrate enemy territory and fight powerful soldiers for valuable loot.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>1v1 Tournament</summary>
+    <p>Compete head-to-head against another player in staff-hosted 1v1 tournaments for valuable rewards and prizes.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>2v2 Tournament</summary>
+    <p>Team up with a partner and battle another duo in staff-hosted 2v2 tournaments for rewards and prizes.</p>
+  </details>
+
+  <details class="rules-dropdown">
+    <summary>3v3 Tournament</summary>
+    <p>Form a team of three and compete against other squads in staff-hosted 3v3 tournaments, with rewards ranging from valuable in-game items to cash prizes during Grand Tournaments.</p>
+  </details>
+</section>
+
+<section class="hero fade-in" id="leaderboards">
+  <h1>Leaderboards</h1>
+  <p>
+    Compete for the top spots across multiple leaderboards, including ELO, KDR, Top Kills, and Top Streak, with ELO dynamically reflecting your combat performance and the strength of your opponents.
+  </p>
+  <p>
+    Reach the top of the rankings to earn valuable in-game rewards, exclusive ranks, and cash prizes, while the members of the highest-ranked clan can also claim exclusive rewards for their collective performance.
+  </p>
+
+  <!-- Slika Leaderboards -->
+  <img src="../../assets/ldr.avif" alt="Leaderboards Preview" class="event-img">
+
+  <!-- Napomena -->
+  <p class="event-caption">This is the Leaderboards players can check at spawn.</p>
+</section>
+
+
+<section class="hero fade-in" id="rank-crates">
+  <h1>Rank & Crates</h1>
+
+  <!-- Dropdown za Ranks -->
+  <details class="rules-dropdown">
+    <summary>Ranks</summary>
+    <p>Rager Network features a variety of ranks that represent a player's status, achievements, or role within the community.</p>
+
+    <p><span style="color: lime;"><strong>Player</strong></span> — The standard rank for every regular player on Rager Network.</p>
+    <p><span style="color: orange;"><strong>Elder</strong></span> — A veteran rank for long-time members of the community who actively contribute, help other players, and support the server.</p>
+
+    <!-- VIP rank opis + pod-dropdown -->
+    <p><span class="vip-gradient"><strong>VIP</strong></span> — A premium rank available for purchase, providing additional perks and features.</p>
+    <details class="rules-subdropdown">
+      <summary>VIP Privileges</summary>
+      <p>Unique VIP prefix</p>
+      <p>Change nick <code style="color:#ccc;">/nick</code></p>
+      <p>Change skin <code style="color:#ccc;">/skin</code></p>
+      <p>Kit Knight <code style="color:#ccc;">/kit knight</code></p>
+      <p>Kit Pot <code style="color:#ccc;">/kit pot</code></p>
+      <p>Kit Keys at Keymaster</p>
+      <p>Vault 1 and 2 at Vaultkeeper</p>
+      <!-- Knight PV video -->
+      <video autoplay loop muted playsinline class="event-video">
+        <source src="../../assets/knight pv.mp4" type="video/mp4">
+      </video>
+      <p class="event-caption">Knight Pv Preview</p>
+      <p>Premium Shop</p>
+      <!-- Premium video -->
+      <video autoplay loop muted playsinline class="event-video">
+        <source src="../../assets/premium.mp4" type="video/mp4">
+      </video>
+      <p class="event-caption">Premium Shop Preview</p>
+    </details>
+
+    <!-- VIP+ rank opis + pod-dropdown -->
+    <p><span class="vipplus-gradient"><strong>VIP+</strong></span> — An upgraded premium rank offering even more perks and exclusive features than VIP.</p>
+    <details class="rules-subdropdown">
+      <summary>VIP+ Privileges</summary>
+      <p>Unique VIP+ prefix</p>
+      <p>Change nick <code style="color:#ccc;">/nick</code></p>
+      <p>Change skin <code style="color:#ccc;">/skin</code></p>
+      <p>Kit Knight <code style="color:#ccc;">/kit knight</code></p>
+      <p>Kit Pot <code style="color:#ccc;">/kit pot</code></p>
+      <p>Enderchest <code style="color:#ccc;">/ec</code></p>
+      <p>Kit Warrior <code style="color:#ccc;">/kit warrior</code></p>
+      <p>Chat format and color</p>
+      <p>Kit Keys+ at Keymaster</p>
+      <p>Vaults 1, 2 i 3 at Vaultkeeper</p>
+      <!-- Warrior PV video -->
+      <video autoplay loop muted playsinline class="event-video">
+        <source src="../../assets/warrior pv.mp4" type="video/mp4">
+      </video>
+      <p class="event-caption">Warrior Pv Preview</p>
+      <p><em>Note: The Warrior rank includes only Keys+ at Keymaster, no Keys kit.</em></p>
+      <p>Premium Shop</p>
+      <!-- Premium video -->
+      <video autoplay loop muted playsinline class="event-video">
+        <source src="../../assets/premium.mp4" type="video/mp4">
+      </video>
+      <p class="event-caption">Premium Shop Preview</p>
+    </details>
+
+    <p><span style="color: darkorange;"><strong>Champion</strong></span> — Awarded to players who win tournaments and prove themselves in competitive events.</p>
+    <p><span style="color: maroon;"><strong>Titan</strong></span> — Awarded to the player currently holding the top position on the ELO leaderboard.</p>
+    <p><span style="color: red;"><strong>Promoter</strong></span> — A special rank for influencers and content creators who promote and represent Rager Network.</p>
+    <p><span style="color: purple;"><strong>Moderator</strong></span> — A staff rank responsible for maintaining order, assisting players, and enforcing the server rules.</p>
+    <p><span style="color: blue;"><strong>Admin</strong></span> — A senior staff rank responsible for overseeing the server and its staff team.</p>
+    <p><span style="color: #ff6666;"><strong>Owner</strong></span> — The highest staff rank, held by the owner and founder of Rager Network.</p>
+  </details>
+
+  <!-- Dropdown za Crates -->
+  <details class="rules-dropdown">
+    <summary>Crates</summary>
+    <p>SkyPvP features six different crates, each offering its own selection of rewards and providing players with different ways to obtain valuable equipment, items, and other rewards.</p>
+
+    <p><span class="exotic-gradient"><strong>Exotic Crate</strong></span> — Can be purchased, won through tournaments, or obtained as a reward from other crates.</p>
+    <p><span class="mythic-gradient"><strong>Mythic Crate</strong></span> — Can be purchased, won through tournaments, or obtained as a reward from other crates.</p>
+    <p><span style="color: gray;"><strong>Daily Crate</strong></span> — Every player can claim one Daily Crate Key once per day, providing a free daily opportunity to earn rewards.</p>
+    <p><span style="color: darkorange;"><strong>Champion Crate</strong></span> — A special crate awarded to tournament winners alongside their Champion status.</p>
+    <p><span style="color: orange;"><strong>Elder Crate</strong></span> — An exclusive crate reserved specifically for players holding the Elder rank.</p>
+    <p><span style="color: lime;"><strong>Koth Crate</strong></span> — Obtained by winning Koth events and opened using a Koth Key.</p>
+
+    <!-- Video kao GIF-style loop -->
+    <video autoplay loop muted playsinline class="event-video">
+      <source src="../../assets/crates.mp4" type="video/mp4">
+    </video>
+    <p class="event-caption">Crates Preview</p>
+  </details>
+<br>
+<br>
+  <p class="support-note">
+  If you would like to support us, the best way is through purchasing ranks or crates. Click the button below to visit our official Ko‑fi shop.
+</p>
+<script src='https://storage.ko-fi.com/cdn/scripts/overlay-widget.js'></script>
+<a href="https://ko-fi.com/ragernetwork/shop" target="_blank" class="kofi-btn">
+  <span class="kofitext">
+    <img src="https://storage.ko-fi.com/cdn/cup-border.png" alt="Ko-fi donations" class="kofiimg">
+    Rager Network store
+  </span>
+</a>
+</section>
+
+<section class="hero fade-in" id="clans">
+  <h1>Clans</h1>
+  <p>
+    Create your own clan, invite other players, and work together as a team while representing your clan with a unique prefix displayed above your character and in chat. Compete for a place among the top clans by earning kills, climb the clan leaderboards, and unlock different prefix colors based on your clan's performance.
+  </p>
+
+  <!-- Slika Clan Preview -->
+  <img src="../../assets/clanpreview.avif" alt="Clan Preview" class="event-img">
+  <p class="event-caption">Clan prefix Preview</p>
+
+  <!-- Slika Clan Stats -->
+  <img src="../../assets/clanstats.avif" alt="Clan Stats" class="event-img">
+  <p class="event-caption">Clan info stats at spawn</p>
+</section>
+
+
+<section class="hero fade-in" id="dungeons">
+  <h1>Dungeons</h1>
+
+  <!-- Inferno Spire -->
+  <details class="rules-dropdown">
+    <summary>Inferno Spire</summary>
+    <p>A towering fortress consumed by flame, where warriors and guardians sworn to the infernal forces defend the spire from anyone foolish enough to enter. The deeper you venture, the more relentless its defenders become.</p>
+    <p><strong>Mobs:</strong> Flame Warrior, Infernal Guardian, Blazing Sentinel</p>
+    <p><strong>Faction:</strong> <span style="color: orange;">Blaze</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: green;">★</span></p>
+  </details>
+
+  <!-- Ender Abyss -->
+  <details class="rules-dropdown">
+    <summary>Ender Abyss</summary>
+    <p>A dark realm shaped by the mysterious forces of the End, where twisted creatures patrol the depths and defend its secrets. Those who enter must face an increasingly dangerous collection of Ender-born enemies.</p>
+    <p><strong>Mobs:</strong> Void Stalker, Shadow Guard, Ender Ripper, End Scuttler, Ender Witch</p>
+    <p><strong>Faction:</strong> <span style="color: purple;">Ender</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: green;">★</span></p>
+  </details>
+
+  <!-- Deserted Bazaar -->
+  <details class="rules-dropdown">
+    <summary>Deserted Bazaar</summary>
+    <p>Once a thriving marketplace, this abandoned bazaar has long since been overtaken by creatures lurking among its forgotten streets. Poisonous spiders and the terrifying Spider Queen now rule the ruins, while the Sand Wrath haunts the surrounding sands.</p>
+    <p><strong>Mobs:</strong> Venom Spider, Spider Queen, Sand Wrath</p>
+    <p><strong>Faction:</strong> <span style="color: lightblue;">Human</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: green;">★</span></p>
+  </details>
+
+  <!-- Primal Grounds -->
+  <details class="rules-dropdown">
+    <summary>Primal Grounds</summary>
+    <p>A wild and ancient territory inhabited by a tribal civilization that has remained untouched by the outside world. Its warriors, shamans, and wardens fiercely protect their lands from those who dare trespass.</p>
+    <p><strong>Mobs:</strong> Tribal Minion, Tribal Warden, Tribal Shaman</p>
+    <p><strong>Faction:</strong> <span style="color: lightblue;">Human</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: yellow;">★★</span></p>
+  </details>
+
+  <!-- Stronghold -->
+  <details class="rules-dropdown">
+    <summary>Stronghold</summary>
+    <p>A heavily fortified military stronghold defended by an organized legion prepared for war. Archers, brutes, beasts, and powerful commanders stand between you and whatever lies beyond its gates.</p>
+    <p><strong>Mobs:</strong> Legion Archer, Legion Brute, Legion Beast, Judicator, Legion Mage</p>
+    <p><strong>Faction:</strong> <span style="color: lightblue;">Human</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: orange;">★★★</span></p>
+  </details>
+
+  <!-- Twilight Grove -->
+  <details class="rules-dropdown">
+    <summary>Twilight Grove</summary>
+    <p>A mysterious forest where nature itself seems to have turned against those who enter. Ancient guardians and corrupted woodland creatures protect the grove, with the Verdant Warden standing as its most powerful defender.</p>
+    <p><strong>Mobs:</strong> Twigling, Stoneguard, Sapshooter, Rooted Guard, Verdant Warden</p>
+    <p><strong>Faction:</strong> <span style="color:#691b88;">Reaper</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: orange;">★★★</span></p>
+  </details>
+
+  <!-- Necrotic Depths -->
+  <details class="rules-dropdown">
+    <summary>Necrotic Depths</summary>
+    <p>Deep beneath the world lies a place consumed by corruption, where the dead have been twisted into relentless creatures. The further you descend, the more powerful and corrupted the undead become.</p>
+    <p><strong>Mobs:</strong> Corrupted Wretch, Corrupted Ravager, Corrupted Brute</p>
+    <p><strong>Faction:</strong> <span style="color:#691b88;">Reaper</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: red;">★★★★</span></p>
+  </details>
+
+  <!-- Reaper’s Shade -->
+  <details class="rules-dropdown">
+    <summary>Reaper’s Shade</summary>
+    <p>A place touched by the presence of the Grim Reaper, whose influence has left the land shrouded in death and darkness. Those who enter must confront one of the Reaper’s most feared manifestations.</p>
+    <p><strong>Mob:</strong> Wither</p>
+    <p><strong>Faction:</strong> <span style="color:#691b88;">Reaper</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: red;">★★★★</span></p>
+  </details>
+
+  <!-- Shadowed Reflection -->
+  <details class="rules-dropdown">
+    <summary>Shadowed Reflection</summary>
+    <p>A strange realm where the boundaries between reality and reflection begin to disappear. Within its depths, an unnatural reflection awaits those willing to confront something that should never have existed.</p>
+    <p><strong>Mob:</strong> Reflection</p>
+    <p><strong>Faction:</strong> <span style="color: white;">None</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: orange;">★★★</span></p>
+  </details>
+
+  <!-- Exiled Beast -->
+  <details class="rules-dropdown">
+    <summary>Exiled Beast</summary>
+    <p>An isolated domain where a powerful creature has been cast away from the world. Whatever drove the beast into exile remains unclear, but its strength makes approaching it a dangerous undertaking.</p>
+    <p><strong>Mob:</strong> Warden</p>
+    <p><strong>Faction:</strong> <span style="color: green;">Lost Nation</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: red;">★★★★</span></p>
+  </details>
+
+  <!-- Reaper’s Lair -->
+  <details class="rules-dropdown">
+    <summary>Reaper’s Lair</summary>
+    <p>Deep within his domain lies the lair of the Grim Reaper himself, a being whose hunger for souls has been fed by centuries of war. Few have dared to enter, and even fewer have returned unchanged.</p>
+    <p><strong>Mob:</strong> Reaper</p>
+    <p><strong>Faction:</strong> <span style="color:#691b88;">Reaper</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: purple;">★★★★★</span></p>
+  </details>
+
+  <!-- Wizard’s Vault -->
+  <details class="rules-dropdown">
+    <summary>Wizard’s Vault</summary>
+    <p>Hidden away from the world lies a vault belonging to the mysterious wizard whose influence reaches far beyond the realm. Whatever knowledge and power lies within is protected by the very being who has shaped so much of Rager Network’s history.</p>
+    <p><strong>Mob:</strong> Wizard</p>
+    <p><strong>Faction:</strong> <span style="color: lightblue;">Human</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: red;">★★★★</span></p>
+  </details>
+
+  <!-- Last Dance -->
+  <details class="rules-dropdown">
+    <summary>Last Dance</summary>
+    <p>A haunting place where the remains of a fallen survivor linger, trapped between the world of the living and the dead. Entering this forgotten ground means confronting the final remnants of someone who once fought to survive.</p>
+    <p><strong>Mob:</strong> Fallen Survivor</p>
+    <p><strong>Faction:</strong> <span style="color: green;">Lost Nation</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: purple;">★★★★★</span></p>
+  </details>
+
+    <!-- Ethernal Guardian -->
+  <details class="rules-dropdown">
+    <summary>Ethernal Guardian</summary>
+    <p>A sacred domain tied to Aegis, the guardian angel revered throughout Rager Network. Empowered by the mysterious wizard and locked in an ancient struggle with the Grim Reaper, Aegis remains one of the realm’s most formidable beings.</p>
+    <p><strong>Mob:</strong> Aegis</p>
+    <p><strong>Faction:</strong> <span style="color: green;">Lost Nation</span></p>
+    <p><strong>Difficulty:</strong> <span style="color: lightblue;">★★★★★★</span></p>
+  </details>
+
+  <!-- Napomena sa linkom ka Wiki -->
+  <p class="support-note">
+    For more detailed information about mobs and dungeons, please visit our 
+    <a href="wiki.html" class="styled-link">Wiki page</a>.
+  </p>
+</section>
+
+<section class="hero fade-in" id="additional-features">
+  <h1>Additional Features</h1>
+
+  <!-- Kits -->
+  <h2>Kits</h2>
+  <p>You can preview all the kits at the spawn by right-clicking on NPCs marked with the "preview" hologram.</p>
+  <img src="../../assets/Previewkit.avif" alt="Preview Kits" class="event-img">
+  <p class="event-caption">Preview NPC's</p>
+
+  <!-- Currency -->
+  <h2>Currency</h2>
+  <p>On Rager Network, we have a special currency: emeralds. Players can trade with various NPCs on the map using these emeralds, which they can acquire through sources like crates, the shop, airdrops, or PvP events.</p>
+
+  <!-- Disposal -->
+  <h2>Disposal</h2>
+  <p>Do you have any unnecessary items? You can get rid of them using the Trash bin signs located at the spawn. Right-clicking the Trash bin opens it, and you can deposit all your unwanted items there.</p>
+  <img src="../../assets/Trashbin.avif" alt="Trash Bin" class="event-img">
+  <p class="event-caption">Trash Bin</p>
+  <p>Note that once you leave items in the Trash bin and close the window, they are permanently lost, and there is no way to retrieve them. So be careful about which items you leave in the trash bin!</p>
+
+ <!-- Showoff -->
+<h2>Showoff</h2>
+<p>You have cool items, maybe a whole inventory full? Lots of Elo points or an impressive KDR? You can show it to other players using the following commands:</p>
+
+<p><code style="color:#ccc;">[i]</code> or <code style="color:#ccc;">[item]</code> : Shows your holding item</p>
+<p><code style="color:#ccc;">[inv]</code> or <code style="color:#ccc;">[inventory]</code> : Shows your inventory</p>
+<p><code style="color:#ccc;">[ec]</code> or <code style="color:#ccc;">[ender]</code> : Shows your enderchest</p>
+<p><code style="color:#ccc;">[kd]</code> : Shows your kill / death ratio</p>
+<p><code style="color:#ccc;">[elo]</code> : Shows your Elo points</p>
+<p><code style="color:#ccc;">[bal]</code> : Shows your balance</p>
+
+<video autoplay loop muted playsinline class="event-video">
+  <source src="../../assets/showoff.mp4" type="video/mp4">
+</video>
+<p class="event-caption">Showoff Preview</p>
+<p>Also, this is a good way to show other players items for trading; it doesn't always have to be a flex 🙄</p>
+
+
+  <!-- Trade -->
+  <h2>Trade</h2>
+  <p>No, you don't have to drop items on the ground and risk getting scammed. There's an easier way to trade.</p>
+  <p>Just type <code style="color:#ccc;">/trade &lt;playername&gt;</code>, then wait for the player to accept the request.</p>
+  <p>Next, you can add items for the trade, and the other player does the same. Once both sides are satisfied with the trade, press ready, and that's it – it's that simple!</p>
+  <video autoplay loop muted playsinline class="event-video">
+    <source src="../../assets/trade.mp4" type="video/mp4">
+  </video>
+  <p class="event-caption">Trade Preview</p>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <p>© 2020-2026 Rager Network. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank">
+        <img src="../../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank">
+        <img src="../../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank">
+        <img src="../../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank">
+        <img src="../../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+    <a href="mailto:info@ragernetwork.com" class="contact-btn">Contact Us</a>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
