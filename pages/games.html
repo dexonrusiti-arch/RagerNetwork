@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Games - Rager Network</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="../assets/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="../assets/favicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="../assets/logo.png" alt="Rager Logo" class="logo-img">
+      <span class="rager">Rager</span> <span class="network">Network</span>
+    </div>
+    <div class="server-ip">
+      <button id="copy-ip-btn">Click to copy IP address</button>
+      <div id="copy-popup" class="popup">IP copied!</div>
+    </div>
+  </div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="games.html" class="active">Games</a>
+        <ul class="dropdown-menu">
+          <li><a href="games/skypvp.html">SkyPvP</a></li>
+          <li><a href="games/kitpvp.html">KitPvP</a></li>
+          <li><a href="games/prison.html">Prison</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="rules.html">Rules</a></li>
+      <li><a href="wiki.html">Wiki</a></li>
+    </ul>
+
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank">
+        <img src="../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank">
+        <img src="../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank">
+        <img src="../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank">
+        <img src="../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div id="particles-js"></div>
+
+<aside class="sidebar fade-in">
+  <div class="sidebar-box">
+    <h3>Online Players</h3>
+    <p><span class="value">0</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Best Players (Last Month)</h3>
+    <p>K/D: <span class="value">none</span></p>
+    <p>Elo: <span class="value">none</span></p>
+    <p>Tournaments: <span class="value">none</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Next Event</h3>
+    <p><span class="value">No new events scheduled</span></p>
+  </div>
+</aside>
+
+<section class="hero fade-in">
+  <h1>Our Games</h1>
+  <p>Explore the different game modes available on Rager Network. Each mode offers unique challenges and experiences.</p>
+</section>
+
+<section class="hero fade-in">
+  <div class="games-grid">
+    <!-- SkyPvP -->
+    <div class="game-card">
+      <img src="../assets/skypvp.png" alt="SkyPvP" class="game-icon">
+      <h2>SkyPvP</h2>
+      <p>An RPG-inspired SkyPvP experience combining PvP, PvE, exploration, and relaxed gameplay in a world built for both adventure and progression.</p>
+      <a href="games/skypvp.html" class="btn">More Info</a>
+    </div>
+
+    <!-- KitPvP -->
+    <div class="game-card">
+      <img src="../assets/kitpvp.png" alt="KitPvP" class="game-icon">
+      <h2>KitPvP</h2>
+      <p>A fast-paced PvP experience featuring two distinct modes, from fun and feature-rich kits to competitive ranked combat.</p>
+      <a href="games/kitpvp.html" class="btn">More Info</a>
+    </div>
+
+    <!-- Prison -->
+    <div class="game-card">
+      <img src="../assets/prison.png" alt="Prison" class="game-icon">
+      <h2>Prison</h2>
+      <p>A progression-driven grinding experience focused on mining, resource management, collection, and PvP as you work your way to the top.</p>
+      <a href="games/prison.html" class="btn">More Info</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-content">
+    <p>© 2020-2026 Rager Network. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank">
+        <img src="../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank">
+        <img src="../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank">
+        <img src="../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank">
+        <img src="../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+    <a href="mailto:info@ragernetwork.com" class="contact-btn">Contact Us</a>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
