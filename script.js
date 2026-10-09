@@ -23,7 +23,6 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// NEWS CAROUSEL
 const newsItems = document.querySelectorAll('.news-item');
 const prevBtn = document.querySelector('.prev');
 const nextBtn = document.querySelector('.next');
@@ -36,7 +35,6 @@ function showNews(index) {
   });
 }
 
-// ručno menjanje
 if (prevBtn) {
   prevBtn.addEventListener('click', () => {
     currentIndex = (currentIndex - 1 + newsItems.length) % newsItems.length;
@@ -53,12 +51,11 @@ if (nextBtn) {
   });
 }
 
-// automatsko menjanje
 function startAutoSlide() {
   autoSlideInterval = setInterval(() => {
     currentIndex = (currentIndex + 1) % newsItems.length;
     showNews(currentIndex);
-  }, 5000); // menja se na svakih 5 sekundi
+  }, 5000);
 }
 
 function resetAutoSlide() {
@@ -66,10 +63,8 @@ function resetAutoSlide() {
   startAutoSlide();
 }
 
-// inicijalno
 showNews(currentIndex);
 startAutoSlide();
-// Scroll animacije
 const faders = document.querySelectorAll('.fade-in');
 
 const appearOptions = {
