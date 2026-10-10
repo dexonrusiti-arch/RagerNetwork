@@ -846,4 +846,8 @@ footer {
 .rager-text {
     height: 200px;
     width: auto;
+    position: absolute;
+    left: 100%;
+    top: 50%;
+    transform: translateY(-50%);
 }
