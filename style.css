@@ -44,7 +44,7 @@ body {
   100% { transform: translateX(-50%) translateY(0) scale(1);       opacity: 1; }
 }
 
-/* ===== glass efekat ===== */
+/* ===== Zajednički "glass" paneli ===== */
 .news-item,
 .sidebar-box,
 .support,
@@ -321,7 +321,7 @@ footer {
   transition: transform 0.3s, filter 0.3s;
 }
 
-/* Hover glow */
+/* Hover glow – boja po mreži */
 .footer-socials a.youtube   { --glow: #ff0000; }
 .footer-socials a.instagram { --glow: #e1306c; }
 .footer-socials a.tiktok    { --glow: #25f4ee; }
@@ -332,7 +332,7 @@ footer {
   filter: drop-shadow(0 0 15px var(--glow));
 }
 
-/* ===== dugme ===== */
+/* ===== Dugmad ===== */
 .contact-btn {
   background: linear-gradient(135deg, var(--blue), var(--blue-light));
   color: #fff;
@@ -479,7 +479,7 @@ footer {
   font-weight: bold;
 }
 
-/* ===== Support Ko-fi ===== */
+/* ===== Support / Ko-fi ===== */
 .support {
   margin: 60px auto;
   max-width: 700px;
@@ -578,7 +578,7 @@ footer {
 
 .left-staff { color: #e74c3c; }
 
-/* Tooltip role */
+/* Tooltip uloge */
 .role {
   position: relative;
   cursor: pointer;
@@ -609,7 +609,7 @@ footer {
   transform: translateX(-50%) translateY(-5px);
 }
 
-/* ===== Chapteri ===== */
+/* ===== Chapter / Timeline ===== */
 .chapter {
   border-radius: 10px;
   padding: 20px;
@@ -700,10 +700,18 @@ footer {
   width: 280px;
   text-align: center;
   color: var(--text);
-  transition: transform 0.2s ease;
+  transition: transform 0.2s ease, box-shadow 0.3s ease;
 }
 
-.game-card:hover { transform: translateY(-5px); }
+.game-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 0 15px rgba(241, 196, 15, 0.5);
+}
+
+a.game-card {
+  display: block;
+  text-decoration: none;
+}
 
 .game-icon {
   width: 100px;
@@ -746,7 +754,7 @@ footer {
   color: #ccc;
 }
 
-/* ===== Rank gradienti ===== */
+/* ===== Rank gradijenti ===== */
 .vip-gradient,
 .vipplus-gradient,
 .exotic-gradient,
@@ -760,3 +768,34 @@ footer {
 .vipplus-gradient { background-image: linear-gradient(90deg, cyan, white); }
 .exotic-gradient  { background-image: linear-gradient(90deg, pink, white, pink); }
 .mythic-gradient  { background-image: linear-gradient(90deg, cyan, white, gold); }
+
+/* ===== Wiki ===== */
+.wiki-grid {
+  margin-top: 30px;
+}
+
+.wiki-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  width: 260px;
+  text-decoration: none;
+}
+
+.wiki-img {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  margin-top: auto;
+}
+
+.wiki-card h3 {
+  color: var(--gold);
+  font-size: 1.4rem;
+}
+
+.wiki-card p {
+  font-size: 0.95rem;
+  color: #ccc;
+}
