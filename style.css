@@ -799,3 +799,121 @@ a.game-card {
   font-size: 0.95rem;
   color: #ccc;
 }
+
+/* ===== Interaktivna wiki scena ===== */
+.wiki-scene {
+  position: relative;
+  margin: 30px 260px 30px 30px;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.scene-bg {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+/* Isečci leže preko pozadine i ne hvataju miš */
+.scene-layer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  transition: filter 0.3s ease;
+}
+
+/* Nevidljiva zona koja hvata hover i klik */
+.scene-hit {
+  position: absolute;
+  cursor: pointer;
+}
+
+/* Blagi glow po obliku isečka */
+.scene-item:hover .scene-layer {
+  filter: brightness(1.1)
+          drop-shadow(0 0 15px rgba(241, 196, 15, 0.8))
+          drop-shadow(0 0 30px rgba(241, 196, 15, 0.5));
+}
+
+/* Natpis iznad objekta */
+.scene-label {
+  position: absolute;
+  left: 50%;
+  bottom: 100%;
+  transform: translateX(-50%) translateY(8px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 14px;
+  background: var(--glass-dark);
+  border-radius: 8px;
+  white-space: nowrap;
+  text-align: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.scene-label strong {
+  color: var(--gold);
+  font-size: 1.3rem;
+}
+
+.scene-label small {
+  color: #bbb;
+  font-size: 0.85rem;
+}
+
+.scene-item:hover .scene-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(-6px);
+}
+/* Hovered objekat i njegov natpis uvek iznad ostalih */
+.scene-item:hover .scene-hit {
+  z-index: 10;
+}
+
+/* Natpis ispod objekta (izuzetak, npr. Mobs) */
+.scene-hit.label-below .scene-label {
+  top: 100%;
+  bottom: auto;
+  transform: translateX(-50%) translateY(-8px);
+}
+
+.scene-item:hover .scene-hit.label-below .scene-label {
+  transform: translateX(-50%) translateY(6px);
+}
+
+/* ===== Puls koji pokazuje da je objekat klikabilan ===== */
+@keyframes scene-pulse {
+  0%, 100% {
+    filter: brightness(1)
+            drop-shadow(0 0 0 rgba(241, 196, 15, 0))
+            drop-shadow(0 0 0 rgba(241, 196, 15, 0));
+  }
+  50% {
+    filter: brightness(1.15)
+            drop-shadow(0 0 8px rgba(241, 196, 15, 0.9))
+            drop-shadow(0 0 18px rgba(241, 196, 15, 0.6));
+  }
+}
+
+.wiki-scene .scene-layer {
+  animation: scene-pulse 5s ease-in-out infinite;
+}
+
+/* Objekti pulsiraju jedan za drugim */
+.wiki-scene .scene-item:nth-of-type(2) .scene-layer { animation-delay: 1s; }
+.wiki-scene .scene-item:nth-of-type(3) .scene-layer { animation-delay: 3s; }
+.wiki-scene .scene-item:nth-of-type(4) .scene-layer { animation-delay: 5s; }
+.wiki-scene .scene-item:nth-of-type(5) .scene-layer { animation-delay: 7s; }
+.wiki-scene .scene-item:nth-of-type(6) .scene-layer { animation-delay: 9s; }
+.wiki-scene .scene-item:nth-of-type(7) .scene-layer { animation-delay: 11s; }
+
+/* Na hover se puls gasi i ostaje stalni hover sjaj */
+.wiki-scene .scene-item:hover .scene-layer {
+  animation: none;
+}
