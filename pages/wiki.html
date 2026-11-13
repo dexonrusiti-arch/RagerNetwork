@@ -1,43 +1,157 @@
-  <div class="games-grid wiki-grid">
-    <a href="wiki/map.html" class="game-card wiki-card">
-      <h3>Map</h3>
-      <p>Explore every island, region and hidden location.</p>
-      <img src="../assets/map.png" alt="Map" class="wiki-img">
-    </a>
-
-    <a href="wiki/npcs.html" class="game-card wiki-card">
-      <h3>NPCs</h3>
-      <p>Meet the characters, traders and quest givers.</p>
-      <img src="../assets/npcs.png" alt="NPCs" class="wiki-img">
-    </a>
-
-    <a href="wiki/items.html" class="game-card wiki-card">
-      <h3>Items</h3>
-      <p>Weapons, armor, artifacts and everything in between.</p>
-      <img src="../assets/items.png" alt="Items" class="wiki-img">
-    </a>
-
-    <a href="wiki/dungeons.html" class="game-card wiki-card">
-      <h3>Dungeons</h3>
-      <p>Bosses, mechanics and the loot waiting inside.</p>
-      <img src="../assets/dungeons.png" alt="Dungeons" class="wiki-img">
-    </a>
-
-    <a href="wiki/events.html" class="game-card wiki-card">
-      <h3>Events</h3>
-      <p>KOTH, airdrops, tournaments and special events.</p>
-      <img src="../assets/events.png" alt="Events" class="wiki-img">
-    </a>
-
-    <a href="wiki/mobs.html" class="game-card wiki-card">
-      <h3>Mobs</h3>
-      <p>Creatures you will face and what they drop.</p>
-      <img src="../assets/mobs.png" alt="Mobs" class="wiki-img">
-    </a>
-
-    <a href="wiki/factions.html" class="game-card wiki-card">
-      <h3>Factions</h3>
-      <p>The powers of the world and their history.</p>
-      <img src="../assets/factions.png" alt="Factions" class="wiki-img">
-    </a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Wiki - Rager Network</title>
+  <link rel="stylesheet" href="../style.css">
+  <link rel="icon" href="../assets/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="../assets/favicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="../assets/logo.png" alt="Rager Logo" class="logo-img">
+      <span class="rager">Rager</span> <span class="network">Network</span>
+    </div>
+    <div class="server-ip">
+      <button id="copy-ip-btn">Click to copy IP address</button>
+      <div id="copy-popup" class="popup">IP copied!</div>
+    </div>
   </div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="../index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="games.html">Games</a>
+        <ul class="dropdown-menu">
+          <li><a href="games/skypvp.html">SkyPvP</a></li>
+          <li><a href="games/kitpvp.html">KitPvP</a></li>
+          <li><a href="games/prison.html">Prison</a></li>
+        </ul>
+      </li>
+      <li><a href="shop.html">Shop</a></li>
+      <li><a href="about.html">About</a></li>
+      <li><a href="rules.html">Rules</a></li>
+      <li><a href="wiki.html" class="active">Wiki</a></li>
+    </ul>
+
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank" rel="noopener">
+        <img src="../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank" rel="noopener">
+        <img src="../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank" rel="noopener">
+        <img src="../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank" rel="noopener">
+        <img src="../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div id="particles-js"></div>
+
+<aside class="sidebar fade-in">
+  <div class="sidebar-box">
+    <h3>Online Players</h3>
+    <p><span class="value">0</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Best Players (Last Month)</h3>
+    <p>K/D: <span class="value">none</span></p>
+    <p>Elo: <span class="value">none</span></p>
+    <p>Tournaments: <span class="value">none</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Next Event</h3>
+    <p><span class="value">No new events scheduled</span></p>
+  </div>
+</aside>
+
+<section class="wiki-scene fade-in">
+  <img src="../assets/wiki.jpg" alt="SkyPvP world" class="scene-bg">
+
+  <a href="wiki/map.html" class="scene-item">
+    <img src="../assets/map.png" alt="" class="scene-layer">
+    <span class="scene-hit" style="top:70.5%; left:16.6%; width:13.5%; height:10.8%;">
+      <span class="scene-label"><strong>Map</strong><small>View the global map</small></span>
+    </span>
+  </a>
+
+  <a href="wiki/npcs.html" class="scene-item">
+    <img src="../assets/npcs.png" alt="" class="scene-layer">
+    <span class="scene-hit" style="top:61.5%; left:48%; width:5.4%; height:19.3%;">
+      <span class="scene-label"><strong>NPCs</strong><small>Meet the characters, traders and quest givers</small></span>
+    </span>
+  </a>
+
+  <a href="wiki/items.html" class="scene-item">
+    <img src="../assets/items.png" alt="" class="scene-layer">
+    <span class="scene-hit" style="top:60.9%; left:68%; width:23%; height:27.7%;">
+      <span class="scene-label"><strong>Items</strong><small>Weapons, armor and artifacts</small></span>
+    </span>
+  </a>
+
+  <a href="wiki/events.html" class="scene-item">
+    <img src="../assets/events.png" alt="" class="scene-layer">
+    <span class="scene-hit" style="top:9.1%; left:75.4%; width:21%; height:34.3%;">
+      <span class="scene-label"><strong>Events</strong><small>KOTH, airdrops, tournaments and special events</small></span>
+    </span>
+  </a>
+
+  <a href="wiki/dungeons.html" class="scene-item">
+    <img src="../assets/dungeons.png" alt="" class="scene-layer">
+    <span class="scene-hit" style="top:21.2%; left:26%; width:15%; height:20.5%;">
+      <span class="scene-label"><strong>Dungeons</strong><small>Bosses, mechanics and the loot waiting inside</small></span>
+    </span>
+  </a>
+
+  <a href="wiki/mobs.html" class="scene-item">
+      <img src="../assets/mobs.png" alt="" class="scene-layer">
+     <span class="scene-hit label-below" style="top:30.8%; left:51.8%; width:10.8%; height:24%;">
+       <span class="scene-label"><strong>Mobs</strong><small>Creatures you will face and what they drop</small></span>
+  </span>
+  </a>
+
+  <a href="wiki/factions.html" class="scene-item">
+    <img src="../assets/factions.png" alt="" class="scene-layer">
+    <span class="scene-hit" style="top:13.4%; left:56.2%; width:14.2%; height:16.8%;">
+      <span class="scene-label"><strong>Factions</strong><small>The powers of the world and their history</small></span>
+    </span>
+  </a>
+
+</section>
+
+<footer>
+  <div class="footer-content">
+    <p>© 2020-2026 Rager Network. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank" rel="noopener">
+        <img src="../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank" rel="noopener">
+        <img src="../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank" rel="noopener">
+        <img src="../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank" rel="noopener">
+        <img src="../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+    <a href="mailto:info@ragernetwork.com" class="contact-btn">Contact Us</a>
+  </div>
+</footer>
+
+<script src="../script.js"></script>
+</body>
+</html>
