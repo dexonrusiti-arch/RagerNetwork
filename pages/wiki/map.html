@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Map - Rager Network Wiki</title>
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="icon" href="../../assets/favicon.png" type="image/png">
+  <link rel="shortcut icon" href="../../assets/favicon.png" type="image/png">
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
+</head>
+<body>
+<header>
+  <div class="top-bar">
+    <div class="logo">
+      <img src="../../assets/logo.png" alt="Rager Logo" class="logo-img">
+      <span class="rager">Rager</span> <span class="network">Network</span>
+    </div>
+    <div class="server-ip">
+      <button id="copy-ip-btn">Click to copy IP address</button>
+      <div id="copy-popup" class="popup">IP copied!</div>
+    </div>
+  </div>
+
+  <nav>
+    <ul class="nav-links">
+      <li><a href="../../index.html">Home</a></li>
+      <li class="dropdown">
+        <a href="../games.html">Games</a>
+        <ul class="dropdown-menu">
+          <li><a href="../games/skypvp.html">SkyPvP</a></li>
+          <li><a href="../games/kitpvp.html">KitPvP</a></li>
+          <li><a href="../games/prison.html">Prison</a></li>
+        </ul>
+      </li>
+      <li><a href="../shop.html">Shop</a></li>
+      <li><a href="../about.html">About</a></li>
+      <li><a href="../rules.html">Rules</a></li>
+      <li><a href="../wiki.html" class="active">Wiki</a></li>
+    </ul>
+
+    <div class="social-icons">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank" rel="noopener">
+        <img src="../../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank" rel="noopener">
+        <img src="../../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank" rel="noopener">
+        <img src="../../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank" rel="noopener">
+        <img src="../../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+  </nav>
+</header>
+
+<div id="particles-js"></div>
+
+<aside class="sidebar fade-in">
+  <div class="sidebar-box">
+    <h3>Online Players</h3>
+    <p><span class="value">0</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Best Players (Last Month)</h3>
+    <p>K/D: <span class="value">none</span></p>
+    <p>Elo: <span class="value">none</span></p>
+    <p>Tournaments: <span class="value">none</span></p>
+  </div>
+
+  <div class="sidebar-box">
+    <h3>Next Event</h3>
+    <p><span class="value">No new events scheduled</span></p>
+  </div>
+</aside>
+
+<section class="map-viewer fade-in">
+  <div class="map-frame">
+    <div class="map-tabs">
+      <button class="map-tab active" data-map="world" data-src="../../assets/islands.png" data-alt="SkyPvP world map">World</button>
+      <button class="map-tab" data-map="spawn" data-src="../../assets/spawn.png" data-alt="Spawn island">Spawn</button>
+    </div>
+
+    <div class="map-zoom">
+      <button data-zoom="in" title="Zoom in">+</button>
+      <button data-zoom="out" title="Zoom out">−</button>
+      <button data-zoom="reset" title="Reset">⟲</button>
+    </div>
+
+    <div class="map-viewport">
+      <div class="map-layer" id="map-layer">
+        <img src="../../assets/islands.png" alt="SkyPvP world map" id="map-image" draggable="false">
+        <svg class="faction-overlay" id="faction-overlay" viewBox="0 0 100 100" preserveAspectRatio="none"></svg>
+        <div class="map-markers" id="map-markers"></div>
+      </div>
+    </div>
+
+    <div class="map-legend" id="map-legend"></div>
+  </div>
+</section>
+
+<script>
+  /* ===================== PODACI ===================== */
+
+  // Tipovi ikonica (emoji kasnije možeš zameniti slikama)
+  const TYPES = {
+    npc:          { icon: '🧙', label: 'NPC' },
+    dungeon:      { icon: '💀', label: 'Dungeon' },
+    koth:         { icon: '👑', label: 'KOTH' },
+    piggy:        { icon: '🐷', label: 'Golden Piggy Event' },
+    worldbreaker: { icon: '☄️', label: 'Worldbreaker Event' }
+  };
+
+  // Frakcije i njihove boje
+  const FACTIONS = {
+    human:  { color: '#3498db', label: 'Human Faction' },
+    blaze:  { color: '#e67e22', label: 'Blaze Faction' },
+    lost:   { color: '#2ecc71', label: 'Lost Faction' },
+    ender:  { color: '#9b59b6', label: 'Ender Nation' },
+    reaper: { color: '#95a5a6', label: 'Reaper Faction' }
+  };
+
+  // Ikonice na mapi – x i y su u procentima slike (PRIVREMENE pozicije)
+  const MARKERS = [
+    { map: 'world', type: 'npc',          name: 'Spawn Guide',     desc: 'Helps new players get started', x: 52, y: 45 },
+    { map: 'world', type: 'dungeon',      name: 'Crimson Depths',  desc: 'Dungeon',                       x: 46, y: 12 },
+    { map: 'world', type: 'koth',         name: 'KOTH Arena',      desc: 'King of the Hill',              x: 51, y: 66 },
+    { map: 'world', type: 'piggy',        name: 'Golden Piggy',    desc: 'Event location',                x: 66, y: 30 },
+    { map: 'world', type: 'worldbreaker', name: 'Worldbreaker',    desc: 'Event location',                x: 60, y: 85 },
+    { map: 'spawn', type: 'npc',          name: 'Merchant',        desc: 'Buys and sells items',          x: 50, y: 50 }
+  ];
+
+  // Oblasti frakcija – elipse: centar (x, y) i poluprečnici (rx, ry), sve u procentima (PRIVREMENE)
+  const REGIONS = [
+    { map: 'world', faction: 'human',  x: 52, y: 45, rx: 7,  ry: 13 },
+    { map: 'world', faction: 'blaze',  x: 47, y: 15, rx: 7,  ry: 13 },
+    { map: 'world', faction: 'lost',   x: 41, y: 70, rx: 4,  ry: 9  },
+    { map: 'world', faction: 'ender',  x: 36, y: 45, rx: 6,  ry: 18 },
+    { map: 'world', faction: 'reaper', x: 64, y: 40, rx: 5,  ry: 10 }
+  ];
+
+  /* ===================== LOGIKA ===================== */
+
+  const frame    = document.querySelector('.map-frame');
+  const viewport = document.querySelector('.map-viewport');
+  const layer    = document.getElementById('map-layer');
+  const img      = document.getElementById('map-image');
+  const overlay  = document.getElementById('faction-overlay');
+  const markersEl = document.getElementById('map-markers');
+  const legend   = document.getElementById('map-legend');
+
+  const MIN = 1, MAX = 6;
+  let scale = 1, x = 0, y = 0, dragging = false, startX = 0, startY = 0;
+  let currentMap = 'world';
+  const hidden = new Set();
+
+  // --- Zum i pomeranje ---
+  function apply() {
+    const w = viewport.clientWidth, h = viewport.clientHeight;
+    x = Math.min(0, Math.max(w - w * scale, x));
+    y = Math.min(0, Math.max(h - h * scale, y));
+    layer.style.transform = `translate(${x}px, ${y}px) scale(${scale})`;
+    layer.style.setProperty('--inv', 1 / scale); // ikonice ostaju iste veličine
+    viewport.classList.toggle('zoomed', scale > 1);
+  }
+
+  function zoomAt(factor, cx, cy) {
+    const newScale = Math.min(MAX, Math.max(MIN, scale * factor));
+    x = cx - (cx - x) * (newScale / scale);
+    y = cy - (cy - y) * (newScale / scale);
+    scale = newScale;
+    apply();
+  }
+
+  function reset() { scale = 1; x = 0; y = 0; apply(); }
+
+  function fitFrame() {
+    if (!img.naturalWidth) return;
+    frame.style.setProperty('--ratio', img.naturalWidth / img.naturalHeight);
+    reset();
+  }
+  img.addEventListener('load', fitFrame);
+  if (img.complete) fitFrame();
+
+  viewport.addEventListener('wheel', e => {
+    e.preventDefault();
+    const r = viewport.getBoundingClientRect();
+    zoomAt(e.deltaY < 0 ? 1.2 : 1 / 1.2, e.clientX - r.left, e.clientY - r.top);
+  }, { passive: false });
+
+  viewport.addEventListener('dblclick', e => {
+    const r = viewport.getBoundingClientRect();
+    zoomAt(1.8, e.clientX - r.left, e.clientY - r.top);
+  });
+
+  viewport.addEventListener('pointerdown', e => {
+    if (scale === 1) return;
+    dragging = true;
+    startX = e.clientX - x;
+    startY = e.clientY - y;
+    viewport.setPointerCapture(e.pointerId);
+    viewport.classList.add('dragging');
+  });
+
+  viewport.addEventListener('pointermove', e => {
+    if (!dragging) return;
+    x = e.clientX - startX;
+    y = e.clientY - startY;
+    apply();
+  });
+
+  ['pointerup', 'pointercancel'].forEach(ev =>
+    viewport.addEventListener(ev, () => {
+      dragging = false;
+      viewport.classList.remove('dragging');
+    })
+  );
+
+  document.querySelectorAll('.map-zoom button').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const cx = viewport.clientWidth / 2, cy = viewport.clientHeight / 2;
+      if (btn.dataset.zoom === 'in')    zoomAt(1.4, cx, cy);
+      if (btn.dataset.zoom === 'out')   zoomAt(1 / 1.4, cx, cy);
+      if (btn.dataset.zoom === 'reset') reset();
+    });
+  });
+
+  // --- Crtanje ikonica i frakcija ---
+  function render() {
+    markersEl.innerHTML = MARKERS
+      .filter(m => m.map === currentMap)
+      .map(m => `
+        <div class="map-marker" data-type="${m.type}" style="left:${m.x}%; top:${m.y}%;">
+          <span class="marker-icon">${TYPES[m.type].icon}</span>
+          <span class="marker-label"><strong>${m.name}</strong><small>${m.desc || TYPES[m.type].label}</small></span>
+        </div>`)
+      .join('');
+
+    overlay.innerHTML = REGIONS
+      .filter(r => r.map === currentMap)
+      .map(r => `<ellipse data-faction="${r.faction}" cx="${r.x}" cy="${r.y}" rx="${r.rx}" ry="${r.ry}" fill="${FACTIONS[r.faction].color}"/>`)
+      .join('');
+
+    applyFilters();
+  }
+
+  function applyFilters() {
+    markersEl.querySelectorAll('.map-marker').forEach(el =>
+      el.classList.toggle('is-hidden', hidden.has(el.dataset.type)));
+    overlay.querySelectorAll('ellipse').forEach(el =>
+      el.classList.toggle('is-hidden', hidden.has(el.dataset.faction)));
+  }
+
+  // --- Legenda ---
+  const item = (key, swatch, label) =>
+    `<button class="legend-item" data-key="${key}">${swatch}<span>${label}</span></button>`;
+
+  legend.innerHTML =
+    '<h4>Markers</h4>' +
+    Object.entries(TYPES).map(([k, t]) => item(k, `<span class="legend-icon">${t.icon}</span>`, t.label)).join('') +
+    '<h4>Factions</h4>' +
+    Object.entries(FACTIONS).map(([k, f]) => item(k, `<span class="legend-swatch" style="background:${f.color}"></span>`, f.label)).join('');
+
+  legend.addEventListener('click', e => {
+    const btn = e.target.closest('.legend-item');
+    if (!btn) return;
+    const key = btn.dataset.key;
+    hidden.has(key) ? hidden.delete(key) : hidden.add(key);
+    btn.classList.toggle('off');
+    applyFilters();
+  });
+
+  // --- Tabovi World / Spawn ---
+  document.querySelectorAll('.map-tab').forEach(tab => {
+    tab.addEventListener('click', () => {
+      document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+      currentMap = tab.dataset.map;
+      img.src = tab.dataset.src;
+      img.alt = tab.dataset.alt;
+      render();
+    });
+  });
+
+  // --- Pomoć za postavljanje: Alt + klik ispiše koordinate u konzoli (F12) ---
+  viewport.addEventListener('click', e => {
+    if (!e.altKey) return;
+    const r = layer.getBoundingClientRect();
+    const px = ((e.clientX - r.left) / r.width * 100).toFixed(1);
+    const py = ((e.clientY - r.top) / r.height * 100).toFixed(1);
+    console.log(`x: ${px}, y: ${py}`);
+  });
+
+  window.addEventListener('resize', apply);
+  render();
+</script>
+
+<footer>
+  <div class="footer-content">
+    <p>© 2020-2026 Rager Network. All rights reserved.</p>
+    <div class="footer-socials">
+      <a href="https://www.youtube.com/@ragernetwork7028" class="youtube" target="_blank" rel="noopener">
+        <img src="../../assets/yt ico.png" alt="YouTube">
+      </a>
+      <a href="https://www.instagram.com/rager.network/" class="instagram" target="_blank" rel="noopener">
+        <img src="../../assets/insta ico.png" alt="Instagram">
+      </a>
+      <a href="https://www.tiktok.com/@ragernetwork" class="tiktok" target="_blank" rel="noopener">
+        <img src="../../assets/tt ico.png" alt="TikTok">
+      </a>
+      <a href="https://discord.gg/vSNPHhxdBs" class="discord" target="_blank" rel="noopener">
+        <img src="../../assets/discord ico.png" alt="Discord">
+      </a>
+    </div>
+    <a href="mailto:info@ragernetwork.com" class="contact-btn">Contact Us</a>
+  </div>
+</footer>
+
+<script src="../../script.js"></script>
+</body>
+</html>
