@@ -97,7 +97,11 @@
         <div class="map-markers" id="map-markers"></div>
       </div>
     </div>
-
+    <div class="map-clouds" aria-hidden="true">
+      <span></span><span></span><span></span>
+      <span></span><span></span><span></span>
+      <div class="map-fog"></div>
+    </div>
     <div class="map-legend" id="map-legend"></div>
   </div>
 </section>
@@ -273,15 +277,35 @@
     applyFilters();
   });
 
-  // --- Tabovi World / Spawn ---
+  // --- Tabovi World / Spawn sa prelazom kroz oblake ---
+  const FLY_TIME = 1200;   // trajanje celog prelaza (ms)
+  let flying = false;
+
+  // Unapred učitaj sve mape da zamena bude trenutna
+  document.querySelectorAll('.map-tab').forEach(t => { new Image().src = t.dataset.src; });
+
   document.querySelectorAll('.map-tab').forEach(tab => {
     tab.addEventListener('click', () => {
+      if (flying || tab.classList.contains('active')) return;
+      flying = true;
+
       document.querySelectorAll('.map-tab').forEach(t => t.classList.remove('active'));
       tab.classList.add('active');
-      currentMap = tab.dataset.map;
-      img.src = tab.dataset.src;
-      img.alt = tab.dataset.alt;
-      render();
+      frame.classList.add('flying');
+
+      // Na sredini prelaza, dok su oblaci preko svega, menja se mapa
+      setTimeout(() => {
+        currentMap = tab.dataset.map;
+        img.src = tab.dataset.src;
+        img.alt = tab.dataset.alt;
+        reset();
+        render();
+      }, FLY_TIME / 2);
+
+      setTimeout(() => {
+        frame.classList.remove('flying');
+        flying = false;
+      }, FLY_TIME);
     });
   });
 
