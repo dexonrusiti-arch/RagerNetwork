@@ -769,7 +769,7 @@ a.game-card {
 .exotic-gradient  { background-image: linear-gradient(90deg, pink, white, pink); }
 .mythic-gradient  { background-image: linear-gradient(90deg, cyan, white, gold); }
 
-/* ===== Wiki ===== */
+/* ===== Wiki kartice ===== */
 .wiki-grid {
   margin-top: 30px;
 }
@@ -831,7 +831,12 @@ a.game-card {
   cursor: pointer;
 }
 
-/* Blagi glow po obliku isečka */
+/* Hovered objekat i njegov natpis uvek iznad ostalih */
+.scene-item:hover .scene-hit {
+  z-index: 10;
+}
+
+/* Glow po obliku isečka */
 .scene-item:hover .scene-layer {
   filter: brightness(1.1)
           drop-shadow(0 0 15px rgba(241, 196, 15, 0.8))
@@ -871,10 +876,6 @@ a.game-card {
   opacity: 1;
   transform: translateX(-50%) translateY(-6px);
 }
-/* Hovered objekat i njegov natpis uvek iznad ostalih */
-.scene-item:hover .scene-hit {
-  z-index: 10;
-}
 
 /* Natpis ispod objekta (izuzetak, npr. Mobs) */
 .scene-hit.label-below .scene-label {
@@ -887,7 +888,7 @@ a.game-card {
   transform: translateX(-50%) translateY(6px);
 }
 
-/* ===== Puls koji pokazuje da je objekat klikabilan ===== */
+/* Puls koji pokazuje da je objekat klikabilan */
 @keyframes scene-pulse {
   0%, 100% {
     filter: brightness(1)
@@ -916,4 +917,275 @@ a.game-card {
 /* Na hover se puls gasi i ostaje stalni hover sjaj */
 .wiki-scene .scene-item:hover .scene-layer {
   animation: none;
+}
+
+/* ===== Map viewer ===== */
+.map-viewer {
+  margin: 30px 260px 30px 30px;
+}
+
+.map-frame {
+  --ratio: 1.6;
+  position: relative;
+  width: min(100%, calc(80vh * var(--ratio)));
+  aspect-ratio: var(--ratio);
+  margin: 0 auto;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: var(--shadow);
+}
+
+.map-viewport {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  cursor: zoom-in;
+  touch-action: none;
+}
+
+.map-viewport.zoomed   { cursor: grab; }
+.map-viewport.dragging { cursor: grabbing; }
+
+/* ===== Map sloj (slika + overlay + ikonice zumiraju se zajedno) ===== */
+.map-layer {
+  position: absolute;
+  inset: 0;
+  transform-origin: 0 0;
+  transition: transform 0.15s ease-out;
+}
+
+.map-viewport.dragging .map-layer {
+  transition: none;
+}
+
+#map-image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  user-select: none;
+}
+
+/* Overlay frakcija */
+.faction-overlay {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  filter: blur(6px);
+}
+
+.faction-overlay ellipse {
+  opacity: 0.3;
+  transition: opacity 0.3s;
+}
+
+.faction-overlay ellipse.is-hidden {
+  opacity: 0;
+}
+
+/* Ikonice */
+.map-markers {
+  position: absolute;
+  inset: 0;
+}
+
+.map-marker {
+  position: absolute;
+  transform: translate(-50%, -50%) scale(var(--inv, 1));
+  transition: transform 0.15s ease-out, opacity 0.3s;
+  z-index: 1;
+}
+
+.map-marker:hover {
+  z-index: 10;
+}
+
+.map-marker.is-hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.marker-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  font-size: 1.1rem;
+  background: var(--glass-dark);
+  border: 2px solid var(--gold);
+  border-radius: 50%;
+  box-shadow: var(--shadow);
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.3s;
+}
+
+.map-marker:hover .marker-icon {
+  transform: scale(1.15);
+  box-shadow: 0 0 12px rgba(241, 196, 15, 0.8);
+}
+
+/* Natpis iznad ikonice */
+.marker-label {
+  position: absolute;
+  left: 50%;
+  bottom: calc(100% + 6px);
+  transform: translateX(-50%) translateY(6px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 6px 12px;
+  background: var(--glass-dark);
+  border-radius: 8px;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.marker-label strong {
+  color: var(--gold);
+  font-size: 1rem;
+}
+
+.marker-label small {
+  color: #bbb;
+  font-size: 0.8rem;
+}
+
+.map-marker:hover .marker-label {
+  opacity: 1;
+  transform: translateX(-50%) translateY(0);
+}
+
+/* Legenda dole levo */
+.map-legend {
+  position: absolute;
+  left: 15px;
+  bottom: 15px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 190px;
+  padding: 10px 12px;
+  background: var(--glass-dark);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.map-legend h4 {
+  color: var(--gold);
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin: 4px 0;
+}
+
+.map-legend h4:not(:first-child) {
+  margin-top: 8px;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: none;
+  border: none;
+  color: var(--text);
+  font-size: 0.9rem;
+  padding: 3px 4px;
+  border-radius: 6px;
+  cursor: pointer;
+  text-align: left;
+  transition: opacity 0.3s, background 0.3s;
+}
+
+.legend-item:hover {
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.legend-item.off {
+  opacity: 0.35;
+}
+
+.legend-icon {
+  width: 20px;
+  text-align: center;
+}
+
+.legend-swatch {
+  width: 16px;
+  height: 16px;
+  margin: 0 2px;
+  border-radius: 4px;
+  opacity: 0.8;
+}
+
+/* Tabovi gore levo */
+.map-tabs {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  z-index: 5;
+  display: flex;
+  gap: 6px;
+  padding: 6px;
+  background: var(--glass-dark);
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  box-shadow: var(--shadow);
+}
+
+.map-tab {
+  background: transparent;
+  color: var(--text);
+  border: none;
+  padding: 8px 22px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s, color 0.3s, box-shadow 0.3s;
+}
+
+.map-tab:hover { color: var(--gold); }
+
+.map-tab.active {
+  background: var(--gold);
+  color: #222;
+  box-shadow: 0 0 12px rgba(241, 196, 15, 0.5);
+}
+
+/* Zum dugmad gore desno */
+.map-zoom {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  z-index: 5;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.map-zoom button {
+  width: 40px;
+  height: 40px;
+  background: var(--glass-dark);
+  backdrop-filter: blur(8px);
+  color: var(--text);
+  border: none;
+  border-radius: 8px;
+  font-size: 1.3rem;
+  font-weight: bold;
+  cursor: pointer;
+  box-shadow: var(--shadow);
+  transition: color 0.3s, box-shadow 0.3s;
+}
+
+.map-zoom button:hover {
+  color: var(--gold);
+  box-shadow: 0 0 12px rgba(241, 196, 15, 0.5);
 }
